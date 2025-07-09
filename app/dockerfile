@@ -1,0 +1,30 @@
+# --- Build Stage ---
+FROM golang:1.22-alpine AS builder
+
+WORKDIR /app
+
+# Copia os arquivos do projeto
+COPY go.mod go.sum ./
+RUN go mod download
+
+COPY . .
+
+# Compila a aplicação de forma estática
+RUN CGO_ENABLED=0 GOOS=linux go build -v -a -installsuffix cgo -o /app/rinha-app .
+
+# --- Final Stage ---
+FROM alpine:latest
+
+WORKDIR /app
+
+# Copia o binário compilado
+COPY --from=builder /app/rinha-app .
+
+# Copia o schema do banco de dados
+COPY sql/ /app/sql/
+
+# Expõe a porta que a aplicação vai usar
+EXPOSE 8080
+
+# Comando para iniciar a aplicação
+CMD ["./rinha-app"]
