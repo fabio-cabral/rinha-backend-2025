@@ -1,0 +1,9 @@
+{
+    "name": "Fabio Cabral",
+    "social": ["https://x.com/fabiocabral", "https://bsky.app/profile/fabiocabral.bsky.social", "https://www.linkedin.com/in/fabiocabral/"],
+    "source-code-repo": "https://github.com/fabio-cabral/rinha-backend-2025",
+    "langs": ["go"],
+    "storages": ["SQLite"],
+    "load-balancers": ["nginx"],
+    "other-technologies": ["Estratégia de Comunicação e Resiliência: Circuit Breaker customizado e filas em memória (channels).", "Google Gemini 2.5 Pro"]
+}
